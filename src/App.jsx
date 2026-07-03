@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div>
-        Gayanga Nayanajith
+        Gayanga-Nayanajith
       </div>
     </>
   )
