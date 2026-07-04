@@ -3,6 +3,7 @@ import ProductCard from "./productCard.jsx";
 export default function TrendingProducts() {
     return (
         <div>
+
             <h1>Trending Products</h1>
             <ProductCard
                 name="Apple iPhone"
@@ -23,6 +24,7 @@ export default function TrendingProducts() {
                 name="Macbook Air"
                 image="https://picsum.photos/id/6/200/300"
                 price="Rs.200, 000/-" />
+                
         </div>
     )
 }
