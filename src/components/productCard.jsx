@@ -1,10 +1,12 @@
-export default function ProductCard() {
+export default function ProductCard(props) {
+
+    console.log(props)
 
     return (
         <div>
-            <h1>Apple iPhone</h1>
-            <img src="https://picsum.photos/id/3/200/300"></img>
-            <p>Price - Rs.150, 000/-</p>
+            <h1>{props.name}</h1>
+            <img src={props.image} alt="Random Image"></img>
+            <p>{props.price}</p>
             <button>Buy Now</button>
         </div>
     )
