@@ -1,23 +1,21 @@
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import HomePage from './pages/homePage.jsx'
 import ProductCard from './components/productCard.jsx'
 import TrendingProducts from './components/trendingProducts.jsx'
+import AdminPage from './pages/adminPage.jsx'
 
 function App() {
 
   return (
     <>
-      <div className='w-[900px] h-[600px] border-[2px]'>
+      <div className='w-full h-screen border-[2px] felx justify-center items-center'>
+        <Routes>
+          
+          <Route path='/' element={<HomePage />} />
+          <Route path='/admin' element={<AdminPage />} />
 
-        <div className='w-[700px] h-[500px] bg-blue-400 flex flex-col items-center justify-center relative'>
-
-          <div className='w-[50px] h-[50px] bg-red-600'></div>
-          <div className='w-[50px] h-[50px] bg-yellow-600 fixed top-[4px]'></div>
-          <div className='w-[50px] h-[50px] bg-green-600 absolute bottom-[5px]'></div>
-          <div className='w-[50px] h-[50px] bg-purple-500'></div>
-          <div className='w-[50px] h-[50px] bg-white'></div>
-
-        </div>
-
+        </Routes>
       </div>
     </>
   )
