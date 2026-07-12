@@ -9,11 +9,11 @@ function App() {
 
   return (
     <>
-      <div className='w-full h-screen border-[2px] felx justify-center items-center'>
+      <div className='w-full h-screen border-[2px] flex justify-center items-center bg-primary text-secondary'>
         <Routes>
-          
+           
           <Route path='/' element={<HomePage />} />
-          <Route path='/admin' element={<AdminPage />} />
+          <Route path='/admin/*' element={<AdminPage />} />
 
         </Routes>
       </div>
