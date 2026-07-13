@@ -22,4 +22,4 @@ export default function AdminPage() {
             </div>
         </div>
     )
-}
+ }
