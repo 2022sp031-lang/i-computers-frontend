@@ -4,6 +4,7 @@ import HomePage from './pages/homePage.jsx'
 import ProductCard from './components/productCard.jsx'
 import TrendingProducts from './components/trendingProducts.jsx'
 import AdminPage from './pages/adminPage.jsx'
+import Test from './pages/test.jsx'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
            
           <Route path='/' element={<HomePage />} />
           <Route path='/admin/*' element={<AdminPage />} />
+          <Route path='/test' element={<Test />} />
 
         </Routes>
       </div>

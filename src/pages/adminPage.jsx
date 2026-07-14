@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 
 export default function AdminPage() {
     return (
@@ -9,6 +9,13 @@ export default function AdminPage() {
                 <a href="/admin/orders" className="block py-2 px-4 hover:bg-gray-700">orders</a>
                 <a href="/admin/users" className="block py-2 px-4 hover:bg-gray-700">users</a>
                 <a href="/admin/reviews" className="block py-2 px-4 hover:bg-gray-700">reviews</a>
+
+                <h1>-----------------------------------------------</h1>
+
+                <Link to="/admin" className="block py-2 px-4 hover:bg-gray-700">products</Link>
+                <Link to="/admin/orders" className="block py-2 px-4 hover:bg-gray-700">orders</Link>
+                <Link to="/admin/users" className="block py-2 px-4 hover:bg-gray-700">users</Link>
+                <Link to="/admin/reviews" className="block py-2 px-4 hover:bg-gray-700">reviews</Link>
 
             </div>
             <div className="w-[calc(100%-300px)] h-full bg-primary border-[6px] border-accent rounded-2xl">
