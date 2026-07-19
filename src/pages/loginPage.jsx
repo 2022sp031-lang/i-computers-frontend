@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
@@ -7,7 +8,19 @@ export default function LoginPage() {
     const[email,setEmail] = useState("")
     const[password,setPassword] = useState("")
 
-    function handleLogin() {}
+    function handleLogin() {
+        console.log("Email: " + email)
+        console.log("Password: " + password)
+
+        axios.post(import.meta.env.VITE_API_URL +  "/users/login", {
+            email: email,
+            password: password
+        }).then((response)=> {
+            console.log("Login succesfull: " , response.data)
+        }).catch((error)=> {
+            console.log("login falied:", error)
+        })
+    }
 
     return (
         <div className="w-full h-screen flex justify-center items-center bg-[url('/bg-image.jpg')] bg-center bg-cover">
