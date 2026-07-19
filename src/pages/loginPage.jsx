@@ -7,6 +7,8 @@ export default function LoginPage() {
     const[email,setEmail] = useState("")
     const[password,setPassword] = useState("")
 
+    function handleLogin() {}
+
     return (
         <div className="w-full h-screen flex justify-center items-center bg-[url('/bg-image.jpg')] bg-center bg-cover">
             <div className="w-1/2 h-full flex justify-center items-center"></div>
@@ -38,7 +40,7 @@ export default function LoginPage() {
                     className="w-3/4 p-3 rounded-lg border border-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"/>
 
                     <p className="mb-6 w-3/4 text-right text-white">Forget password? <Link to="/forget-password" className="text-blue-500 hover:zoom-110">Click Here</Link></p>
-                    <button className="w-3/4 p-3 bg-blue-700 text-white rounded-lg focus:outline-none focus:ring-2 hover:zoom-110 hover:bg-blue-800 transition duration-300">
+                    <button onClick={handleLogin} className="w-3/4 p-3 bg-blue-700 text-white rounded-lg focus:outline-none focus:ring-2 hover:zoom-110 hover:bg-blue-800 transition duration-300">
                         Sign in
                     </button>
                     <p className="mb-6 mt-3 text-right text-white">Don't have an account? <Link to="/register" className="text-blue-500 hover:zoom-110">Register</Link></p>
