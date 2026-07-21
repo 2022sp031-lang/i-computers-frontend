@@ -7,12 +7,14 @@ import AdminPage from './pages/adminPage.jsx'
 import Test from './pages/test.jsx'
 import LoginPage from './pages/loginPage.jsx'
 import ResetPasswordPage from './pages/resetPassowrdPage.jsx'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
 
   return (
     <>
       <div className='w-full h-screen border-[2px] flex justify-center items-center bg-primary text-secondary'>
+        <Toaster position='top-center'/>
         <Routes>
            
           <Route path='/' element={<HomePage />} />
