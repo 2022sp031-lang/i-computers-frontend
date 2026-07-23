@@ -11,6 +11,9 @@ export default function Test() {
 
     const[file, setFile] = useState(null);
 
+
+    //added these two lines to check the merge request
+
     async function handleUpload() {
         try{
 
