@@ -22,7 +22,6 @@ function App() {
           <Route path='/test' element={<Test />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/reset-password' element={<ResetPasswordPage />} />
-
         </Routes>
       </div>
     </>
