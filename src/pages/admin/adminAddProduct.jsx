@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function AdminAddProuctPage() {
+export default function AdminAddProductPage() {
 
 // productId
 // name
@@ -19,14 +19,14 @@ export default function AdminAddProuctPage() {
     const[name, setName] = useState();
     const[altNames, setAltNames] = useState();
     const[price, setPrice] = useState();
-    const[labelPrice, setlabelPrice] = useState();
+    const[labelPrice, setLabelPrice] = useState();
     const[description, setDescription] = useState();
     const[images, setImages] = useState([]);
-    const[barnd, setBrand] = useState();
+    const[brand, setBrand] = useState();
     const[model, setModel] = useState();
-    const[] = useState();
-    const[] = useState();
-    const[] = useState();
+    const[category, setCategory] = useState("");
+    const[isAvailable, setIsAvailable] = useState(true);
+    const[stock, setStock] = useState(0);
 
     return (
         <h1>Add products</h1>
