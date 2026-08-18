@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <div className='w-full h-screen border-[2px] flex justify-center items-center bg-primary text-secondary'>
-        <Toaster position='top-center'/>
+        <Toaster position='bottom-left'/>
         <Routes>
            
           <Route path='/' element={<HomePage />} />

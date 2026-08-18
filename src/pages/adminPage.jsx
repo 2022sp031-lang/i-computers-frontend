@@ -20,7 +20,7 @@ export default function AdminPage() {
                 <Link to="/admin/reviews" className="block py-2 px-4 hover:bg-gray-700">Reviews</Link>
 
             </div>
-            <div className="w-[calc(100%-300px)] h-full bg-primary border-[6px] border-accent rounded-2xl">
+            <div className="w-[calc(100%-300px)] h-full flex flex-col bg-primary border-[6px] border-accent rounded-2xl">
                 <Routes>
                     <Route path='/' element={<h1>Orders dashboard</h1>} />
                     <Route path='/product' element={<AdminProductPage/>} />
@@ -29,7 +29,6 @@ export default function AdminPage() {
                     <Route path='/reviews' element={<h1>Reviews here</h1>} />
                     <Route path='/add-product' element={<AdminAddProuctPage/>}></Route> 
                 </Routes>
-
             </div>
         </div>
     )
