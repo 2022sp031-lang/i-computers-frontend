@@ -1,5 +1,8 @@
 import { useState } from "react"
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import uploadMedia from "../../utils/meadiaUpload";
+import axios from "axios";
 
 export default function AdminAddProductPage() {
 
@@ -28,6 +31,7 @@ export default function AdminAddProductPage() {
     const [category, setCategory] = useState("");
     const [isAvailable, setIsAvailable] = useState(true);
     const [stock, setStock] = useState(0);
+    const navigate = useNavigate();
 
     async function handleSave() {
         try {
@@ -39,13 +43,43 @@ export default function AdminAddProductPage() {
                 return
             }
 
-            const mediaUrl = [];
+            const mediaUplaodPromises = [];
             for(let i=0; i<images.length; i++) {
-                console.log(i)
+                mediaUplaodPromises.push(uploadMedia(images[i]))
             }
+
+            const urls = await Promise.all(mediaUplaodPromises);
+            const altNamesArray = altNames.split(",");
+
+            const productData = {
+                productId: productId,
+                name: name,
+                altNames: altNamesArray,
+                price: price,
+                labelPrice: labelPrice,
+                description: description,
+                images: urls,
+                brand: brand,
+                model: model,
+                category: category,
+                isAvailable: isAvailable,
+                stock: stock 
+            };
+
+            const response = await axios.post(import.meta.env.VITE_API_URL + "/products", productData, 
+                {
+                    headers: {
+                        "Authorization": "Bearer" + token
+                    }
+                }
+            );
+
+            toast.success("Product added successfully.");
+            navigate("/admin/product");
 
         }catch(e) {
             console.log(e)
+            console.log(e?.response)
             toast.error("Error while saving product.");
         } 
     } 
