@@ -1,4 +1,5 @@
 import { useState } from "react"
+import toast from "react-hot-toast";
 
 export default function AdminAddProductPage() {
 
@@ -28,12 +29,33 @@ export default function AdminAddProductPage() {
     const [isAvailable, setIsAvailable] = useState(true);
     const [stock, setStock] = useState(0);
 
+    async function handleSave() {
+        try {
+
+            const token = localStorage.getItem("token");
+            if(token == null) {
+                toast.error("You must be logged in to perform this action.");
+                window.location.href = "/login";
+                return
+            }
+
+            const mediaUrl = [];
+            for(let i=0; i<images.length; i++) {
+                console.log(i)
+            }
+
+        }catch(e) {
+            console.log(e)
+            toast.error("Error while saving product.");
+        } 
+    } 
+
     return (
         <div className="w-full h-full flex flex-col items-center p-4 overflow-y-scroll">
             <div className="w-full h-[100px] bg-accent flex items-center p-5 rounded-lg text-white justify-between shadow-2xl sticky top-0">
                 <h1 className="text-2xl font-semibold">Add New Product</h1>
                 <div className="h-full flex justify-center items-center">
-                    <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Save</button>
+                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Save</button>
                     <button className="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Cancel</button>
                 </div>
             </div>
