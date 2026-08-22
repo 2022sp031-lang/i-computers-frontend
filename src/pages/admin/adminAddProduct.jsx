@@ -21,7 +21,7 @@ export default function AdminAddProductPage() {
 
     const [productId, setProductId] = useState("");
     const [name, setName] = useState("");
-    const [altNames, setAltNames] = useState("");
+    const [altNames, setAltNames] = useState([]);
     const [price, setPrice] = useState("");
     const [labelPrice, setLabelPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -49,7 +49,7 @@ export default function AdminAddProductPage() {
             }
 
             const urls = await Promise.all(mediaUplaodPromises);
-            const altNamesArray = altNames.split(",");
+            const [altNamesArray] = altNames.split(",");
 
             const productData = {
                 productId: productId,
@@ -66,10 +66,10 @@ export default function AdminAddProductPage() {
                 stock: stock 
             };
 
-            const response = await axios.post(import.meta.env.VITE_API_URL + "/products", productData, 
+            await axios.post(import.meta.env.VITE_API_URL + "/products", productData, 
                 {
                     headers: {
-                        "Authorization": "Bearer" + token
+                        "Authorization": "Bearer " + token
                     }
                 }
             );
@@ -80,7 +80,7 @@ export default function AdminAddProductPage() {
         }catch(e) {
             console.log(e)
             console.log(e?.response)
-            toast.error("Error while saving product.");
+            toast.error(e?.response?.data?.message );
         } 
     } 
 
@@ -141,11 +141,11 @@ export default function AdminAddProductPage() {
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     >
-                        <option value="Laptop">Laptop</option>
+                        <option value="Others">Others</option>
                         <option value="Mobile">Mobile</option>
+                        <option value="Laptop">Laptop</option>
                         <option value="Headphones">Headphones</option>
                         <option value="Camera">Camera</option>
-                        <option value="Others">Others</option>
                     </select>
                 </div>
 
