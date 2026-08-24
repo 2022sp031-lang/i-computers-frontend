@@ -6,19 +6,6 @@ import axios from "axios";
 
 export default function AdminAddProductPage() {
 
-    // productId
-    // name
-    // altNames
-    // price
-    // labelPrice
-    // description
-    // images
-    // brand
-    // model
-    // category
-    // isAvailable
-    // stock
-
     const [productId, setProductId] = useState("");
     const [name, setName] = useState("");
     const [altNames, setAltNames] = useState([]);
