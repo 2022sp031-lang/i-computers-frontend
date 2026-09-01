@@ -18,11 +18,13 @@ export default function AdminAddProductPage() {
     const [category, setCategory] = useState("");
     const [isAvailable, setIsAvailable] = useState(true);
     const [stock, setStock] = useState(0);
+    const [isSaving, setIsSaving] = useState(false);
     const navigate = useNavigate();
 
     async function handleSave() {
         try {
 
+            setIsSaving(true)
             const token = localStorage.getItem("token");
             if(token == null) {
                 toast.error("You must be logged in to perform this action.");
@@ -65,6 +67,7 @@ export default function AdminAddProductPage() {
             navigate("/admin/product");
 
         }catch(e) {
+            setIsSaving(false)
             console.log(e)
             console.log(e?.response)
             toast.error(e?.response?.data?.message );
@@ -76,7 +79,7 @@ export default function AdminAddProductPage() {
             <div className="w-full h-[100px] bg-accent flex items-center p-5 rounded-lg text-white justify-between shadow-2xl sticky top-0">
                 <h1 className="text-2xl font-semibold">Add New Product</h1>
                 <div className="h-full flex justify-center items-center">
-                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Save</button>
+                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" disabled={isSaving}>{isSaving ? "Saving..." : "Save"}</button>
                     <button className="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Cancel</button>
                 </div>
             </div>
@@ -129,6 +132,7 @@ export default function AdminAddProductPage() {
                         onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="Others">Others</option>
+                        <option value="Accessories">Accessories</option>
                         <option value="Mobile">Mobile</option>
                         <option value="Laptop">Laptop</option>
                         <option value="Headphones">Headphones</option>

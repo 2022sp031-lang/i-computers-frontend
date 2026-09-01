@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import uploadMedia from "../../utils/meadiaUpload";
@@ -13,13 +13,15 @@ export default function AdminEditProductPage() {
     const [price, setPrice] = useState(location.state?.price || "");
     const [labelPrice, setLabelPrice] = useState(location.state?.labelPrice || "");
     const [description, setDescription] = useState(location.state?.description || "");
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState(location.state?.images || []);
     const [brand, setBrand] = useState(location.state?.brand || "");
     const [model, setModel] = useState(location.state?.model || "");
     const [category, setCategory] = useState(location.state?.category || "");
     const [isAvailable, setIsAvailable] = useState(location.state?.isAvailable || false);
     const [stock, setStock] = useState(location.state?.stock || 0);
+    const [isUpdating, setIsUpdating] = useState(false);
     const navigate = useNavigate();
+
 
     console.log("Location.state: ", location.state)
 
@@ -30,11 +32,12 @@ export default function AdminEditProductPage() {
                 navigate('/admin/product')
             }
         }
-    )
+    ),[]
 
-    async function handleSave() {
+    async function handleUpdate() {
         try {
 
+            setIsUpdating(true)
             const token = localStorage.getItem("token");
             if(token == null) {
                 toast.error("You must be logged in to perform this action.");
@@ -51,7 +54,6 @@ export default function AdminEditProductPage() {
             const [altNamesArray] = altNames.split(",");
 
             const productData = {
-                productId: productId,
                 name: name,
                 altNames: altNamesArray,
                 price: price,
@@ -65,7 +67,13 @@ export default function AdminEditProductPage() {
                 stock: stock 
             };
 
-            await axios.post(import.meta.env.VITE_API_URL + "/products", productData, 
+            console.log("phase 003")
+            if(urls.length == 0) {
+                productData.images = location.state.images;
+            }
+
+            console.log("phase 002")
+            axios.put(import.meta.env.VITE_API_URL + "/products/" + productId, productData, 
                 {
                     headers: {
                         "Authorization": "Bearer " + token
@@ -73,10 +81,12 @@ export default function AdminEditProductPage() {
                 }
             );
 
-            toast.success("Product added successfully.");
+            console.log("phase 001")
+            toast.success("Product updated successfully.");
             navigate("/admin/product");
 
         }catch(e) {
+            setIsUpdating(false)
             console.log(e)
             console.log(e?.response)
             toast.error(e?.response?.data?.message );
@@ -88,7 +98,7 @@ export default function AdminEditProductPage() {
             <div className="w-full h-[100px] bg-accent flex items-center p-5 rounded-lg text-white justify-between shadow-2xl sticky top-0">
                 <h1 className="text-2xl font-semibold">Edit Products</h1>
                 <div className="h-full flex justify-center items-center">
-                    <button onClick={handleSave} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Update</button>
+                    <button onClick={handleUpdate} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600" disabled={isUpdating}>{isUpdating?"Updating...":"Update"}</button>
                     <button className="ml-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">Cancel</button>
                 </div>
             </div>
@@ -98,6 +108,7 @@ export default function AdminEditProductPage() {
                     <label className="block mb-2 font-semibold">Product ID</label>
                     <input className="border border-gray-300 rounded-md p-2 w-full"
                         value={productId}
+                        disabled={true}
                         onChange={(e) => setProductId(e.target.value)}
                     />
                 </div>
