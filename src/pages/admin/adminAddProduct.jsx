@@ -8,7 +8,7 @@ export default function AdminAddProductPage() {
 
     const [productId, setProductId] = useState("");
     const [name, setName] = useState("");
-    const [altNames, setAltNames] = useState([]);
+    const [altNames, setAltNames] = useState("");
     const [price, setPrice] = useState("");
     const [labelPrice, setLabelPrice] = useState("");
     const [description, setDescription] = useState("");
@@ -38,7 +38,7 @@ export default function AdminAddProductPage() {
             }
 
             const urls = await Promise.all(mediaUplaodPromises);
-            const [altNamesArray] = altNames.split(",");
+            const altNamesArray = altNames.split(",");
 
             const productData = {
                 productId: productId,

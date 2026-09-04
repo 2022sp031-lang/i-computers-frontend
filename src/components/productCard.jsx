@@ -1,30 +1,23 @@
+import { Link } from "react-router-dom";
+
 export default function ProductCard(props) {
 
-    console.log(props)
+    const product = props.product;
+    console.log(product)
 
     return (
-        <div className="w-64 rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden border border-slate-100">
-            <div className="aspect-square overflow-hidden bg-slate-50">
-                <img
-                    src={props.image}
-                    alt={props.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
+        <Link to={"/overview/" + product.productId} state={product} className="w-[300px] h-[450px] m-10 bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col hover:[&_.primary-image]:opacity-0 justify-between cursor-pointer">
+            <div className="w-[300px] h-[300px] relative">
+                <img src={product.images[1]} className="w-[250px] h-[250px] object-cover absolute top-0 left-0"/>
+                <img src={product.images[0]} className="w-[250px] h-[250px] object-cover absolute top-0 left-0 primary-image transition-opacity duration-500"/>
             </div>
-
-            <div className="p-4">
-                <h1 className="text-slate-900 font-semibold text-lg truncate">
-                    {props.name}
-                </h1>
-
-                <p className="text-indigo-700 font-bold text-xl mt-1">
-                    ${props.price}
-                </p>
-
-                <button className="mt-4 w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-medium py-2.5 rounded-xl transition-colors duration-200">
-                    Buy Now
-                </button>
+            <h1 className="text-lg font-semibold px-4">{product.name}</h1>
+            <div className="w-full flex flex-col py-4">
+                {
+                    product.labelPrice > product.price && <span className="text-5m text-gray-500 mt-5 px-4 line-through">{product.labelPrice}</span>
+                }
+                <span className="text-lg font-bold mt-1 px-4">{product.price}</span>
             </div>
-        </div>
+        </Link>
     )
 }
