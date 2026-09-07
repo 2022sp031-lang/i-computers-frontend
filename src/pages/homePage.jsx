@@ -3,6 +3,7 @@ import Header from "../components/header";
 import ProductsPage from "./productsPage";
 import ProductOverviewPage from "./productOverviewPage";
 import CartPage from "./cartPage";
+import CheckoutPage from "./checkoutPage";
 
 export default function HomePage() {
     return (
@@ -15,6 +16,7 @@ export default function HomePage() {
                     <Route path="/contact-us" element={<h1>Contact-Us page</h1>}/>
                     <Route path="/overview/:productId" element={<ProductOverviewPage/>}/>  
                     <Route path="/cart" element={<CartPage/>}/>   
+                    <Route path="/checkout" element={<CheckoutPage/>}/>
                 </Routes>    
             </div> 
         </div>

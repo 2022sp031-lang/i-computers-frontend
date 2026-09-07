@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import getFormattedPrice from "../utils/price-format";
 
 export default function ProductCard(props) {
 
@@ -14,9 +15,9 @@ export default function ProductCard(props) {
             <h1 className="text-lg font-semibold px-4">{product.name}</h1>
             <div className="w-full flex flex-col py-4">
                 {
-                    product.labelPrice > product.price && <span className="text-5m text-gray-500 mt-5 px-4 line-through">{product.labelPrice}</span>
+                    product.labelPrice > product.price && <span className="text-5m text-gray-500 mt-5 px-4 line-through">{getFormattedPrice(product.labelPrice)}</span>
                 }
-                <span className="text-lg font-bold mt-1 px-4">{product.price}</span>
+                <span className="text-lg font-bold mt-1 px-4">{getFormattedPrice(product.price)}</span>
             </div>
         </Link>
     )

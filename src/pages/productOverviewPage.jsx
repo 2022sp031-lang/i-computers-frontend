@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../utils/api";
 import toast from "react-hot-toast";
 import LoadingAnimation from "../components/loadingAnimation";
 import ImageSlideShow from "../components/imageSlideShow";
 import getFormattedPrice from "../utils/price-format";
-import { addToCart, getCart } from "../utils/cart";
+import { addToCart} from "../utils/cart";
 
 
 export default function ProductOverviewPage() {
@@ -78,7 +78,7 @@ export default function ProductOverviewPage() {
                                 </span>
                             }
                         </div>
-                        
+
                         <div className="w-full mt-5 flex gap-10">
                             <span className="text-gray-800 font-semibold">{product.brand}</span>
                             <span className="text-gray-800 font-semibold">{product.model}</span>
@@ -89,19 +89,30 @@ export default function ProductOverviewPage() {
                         <p className="text-lg mt-5 mb-[150px] lg:mb-0 font-bold">{product.description}</p>
                         <div className="flex mt-5 gap-5">
                             <button className="w-62.5 h-17.5 bg-green-500 text-white text-xl font-semibold rounded-lg cursor-pointer hover:bg-green-700 transiton duration-300"
-                            onClick={
-                                ()=> {
-                                    addToCart(product, 1)
+                                onClick={
+                                    () => {
+                                        addToCart(product, 1)
+                                        toast.success("Cart Updated succesfully!")
+                                    }
                                 }
-                            }
                             >Add to Cart</button>
-                            <button className="w-62.5 h-17.5 bg-blue-500 text-white text-xl font-semibold rounded-lg cursor-pointer hover:bg-blue-700 transiton duration-300"
-                            onClick={
-                                ()=> {
-                                    console.log(getCart())
+                            <Link className="w-62.5 h-17.5 bg-blue-500 text-white text-xl font-semibold rounded-lg cursor-pointer hover:bg-blue-700 transiton duration-300 flex justify-center items-center"
+                                to="/checkout"
+                                state={
+                                    [
+                                        {
+                                            product: {
+                                                productId: product.productId,
+                                                name: product.name,
+                                                image: product.images[0],
+                                                labelPrice: product.labelPrice,
+                                                price: product.price,
+                                            },
+                                            quantity: 1
+                                        }
+                                    ]
                                 }
-                            }
-                            >Buy Now</button>
+                            >Buy Now</Link>
                         </div>
                     </div>
                 </div>
