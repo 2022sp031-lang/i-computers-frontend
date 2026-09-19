@@ -9,11 +9,11 @@ export default function AdminEditProductPage() {
     const location = useLocation();
     const [productId, setProductId] = useState(location.state?.productId || "");
     const [name, setName] = useState(location.state?.name || "");
-    const [altNames, setAltNames] = useState(location.state?.altNames ??  "");
+    const [altNames, setAltNames] = useState(location.state?.altNames ? location.state.altNames.join(",")  : "");
     const [price, setPrice] = useState(location.state?.price || "");
     const [labelPrice, setLabelPrice] = useState(location.state?.labelPrice || "");
     const [description, setDescription] = useState(location.state?.description || "");
-    const [images, setImages] = useState(location.state?.images || []);
+    const [images, setImages] = useState([]);
     const [brand, setBrand] = useState(location.state?.brand || "");
     const [model, setModel] = useState(location.state?.model || "");
     const [category, setCategory] = useState(location.state?.category || "");

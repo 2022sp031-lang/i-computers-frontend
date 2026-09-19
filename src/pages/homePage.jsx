@@ -4,6 +4,12 @@ import ProductsPage from "./productsPage";
 import ProductOverviewPage from "./productOverviewPage";
 import CartPage from "./cartPage";
 import CheckoutPage from "./checkoutPage";
+import CustomerMyOrdersPage from "./customerMyOrdersPage";
+import SettingsPage from "./settings";
+import TestPage from "./test";
+import BottomNavigationBar from "../components/bottomNavigationBar";
+import NotFoundPage from "./notFoundPage";
+import LandingPage from "./landingPage";
 
 export default function HomePage() {
     return (
@@ -11,13 +17,17 @@ export default function HomePage() {
             <Header/>
             <div className="w-full h-[calc(100%-100px)] overflow-y-scroll">
                 <Routes>
-                    <Route path="/" element={<h1>Home page</h1>}/>
+                    <Route path="/" element={<LandingPage/>}/>
                     <Route path="/products" element={<ProductsPage/>}/>
                     <Route path="/contact-us" element={<h1>Contact-Us page</h1>}/>
                     <Route path="/overview/:productId" element={<ProductOverviewPage/>}/>  
                     <Route path="/cart" element={<CartPage/>}/>   
                     <Route path="/checkout" element={<CheckoutPage/>}/>
-                </Routes>    
+                    <Route path="/my-orders" element={<CustomerMyOrdersPage/>}/>
+                    <Route path="/settings" element={<SettingsPage/>}/>
+                    <Route path="/*" element={<NotFoundPage/>}/>
+                </Routes>
+                <BottomNavigationBar/>    
             </div> 
         </div>
     )

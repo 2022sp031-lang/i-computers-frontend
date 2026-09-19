@@ -5,13 +5,12 @@ import axios from "axios";
 import { TbTrash } from "react-icons/tb";
 import { BiEdit } from "react-icons/bi";
 import toast from "react-hot-toast";
-import LoadingAnimation from "../../components/loadingAnimation";
-import ProductDeleteModal from "../../components/productDeleteModal";
-import getFormattedPrice from "../../utils/price-format";
-import OrderDetailsModal from "../../components/orderDetailsModel";
+import LoadingAnimation from "../components/loadingAnimation";
+import getFormattedPrice from "../utils/price-format";
+import CustomerOrderDetailsModal from "../components/customerOrderDetailsModel";
 
 
-export default function AdminOrdersPage() {
+export default function CustomerMyOrdersPage() {
 
     const [orders, setOrders] = useState([]);
     const [pageSize, setPageSize] = useState(10);
@@ -107,7 +106,7 @@ export default function AdminOrdersPage() {
                                                         <td className="text-center text-wrap p-2">{new Date(item.date).toLocaleDateString()}</td>
                                                         <td className="text-center text-wrap p-2">{getFormattedPrice(item.total)}</td>
                                                         <td className="text-center text-wrap p-2">{item.status}</td>
-                                                        <td className="text-center text-wrap p-2"><OrderDetailsModal order={item} refresh={()=> {setIsOrdersAreLoaded(false)}}/></td>
+                                                        <td className="text-center text-wrap p-2"><CustomerOrderDetailsModal order={item}/></td>
                                                     </tr>
                                                 )
                                             }

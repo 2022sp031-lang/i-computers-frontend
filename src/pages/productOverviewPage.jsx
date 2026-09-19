@@ -46,11 +46,11 @@ export default function ProductOverviewPage() {
             }
             {
                 status == "success" &&
-                <div className="h-full w-full flex">
-                    <div className="w-1/2 h-full flex flex-col justify-center items-center">
+                <div className="h-full w-full flex lg:flex-row flex-col">
+                    <div className="lg:w-1/2 w-full h-full flex flex-col justify-center items-center">
                         <ImageSlideShow images={product.images} />
                     </div>
-                    <div className="w-1/2 h-full flex flex-col p-4">
+                    <div className="lg:w-1/2 w-full h-full flex flex-col p-4">
                         <h1 className="text-2xl font-bold">{product.name}
                             {
                                 product.altNames.map(
@@ -86,8 +86,8 @@ export default function ProductOverviewPage() {
                         <div className="w-full mt-5 flex gap-10">
                             <span className="text-gray-800 font-semibold">{product.category}</span>
                         </div>
-                        <p className="text-lg mt-5 mb-[150px] lg:mb-0 font-bold">{product.description}</p>
-                        <div className="flex mt-5 gap-5">
+                        <p className="text-lg mt-5 mb-[150px] lg:mb-0 font-bold mb-[150px] lg:mb-0">{product.description}</p>
+                        <div className="flex mt-5 gap-5 fixed lg:static bottom-[82px] w-full right-0 p-2 backdrop-blur-2xl lg:backdrop-blur-none">
                             <button className="w-62.5 h-17.5 bg-green-500 text-white text-xl font-semibold rounded-lg cursor-pointer hover:bg-green-700 transiton duration-300"
                                 onClick={
                                     () => {
