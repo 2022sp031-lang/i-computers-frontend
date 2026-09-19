@@ -71,7 +71,7 @@ export default function CreateOrderModel(props) {
 
     return (
         <>
-            <button className="bg-accent/80 text-white text-xl px-4 py-2 rounded-lg font-semibold cursor-pointer hover:bg-accent transiton duration-300"
+            <button className="bg-accent/80 text-white text-[16px] px-4 py-2 rounded-lg font-semibold cursor-pointer hover:bg-accent transiton duration-300"
                 onClick={
                     () => {
                         setIsModelOpen(true)
