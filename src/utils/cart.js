@@ -1,0 +1,92 @@
+const exampleCart = [
+
+    {
+        product : {
+            productId : "1234567890",
+            name : "Example Product",
+            image : "https://via.placeholder.com/150",
+            labelPrice : 100,
+            price : 80,
+        },
+        quantity : 2
+    },{
+        product : {
+            productId : "1234567890",
+            name : "Example Product",
+            image : "https://via.placeholder.com/150",
+            labelledPrice : 100,
+            price : 80,
+        },
+        quantity : 1
+    }
+]
+
+export function getCart() {
+
+    const cartString = localStorage.getItem("cart");
+    if(cartString == null) {
+
+        localStorage.setItem("cart", "[]")
+        return []
+
+    }else{
+        try {
+            const cart = JSON.parse(cartString)
+            return Array.isArray(cart) ? cart : [];
+        } catch {
+            localStorage.setItem("cart", "[]")
+            return [];
+        }
+    }
+}
+
+export function addToCart(product, quantity) {
+    const cart = getCart();
+    console.log(cart)
+
+    const existingProductIndex = cart.findIndex(
+        (item)=> {
+            return item.product.productId == product.productId
+        }
+    );
+
+    if(existingProductIndex == -1) {
+
+        if(quantity > 0) {
+            cart.push(
+                {
+                    product : {
+                        productId : product.productId,
+                        name : product.name,
+                        image : product.images?.[0] ?? product.image ?? "",
+                        labelPrice : product.labelPrice,
+                        price : product.price,
+                    },
+                    quantity : quantity
+                }
+            )
+        }
+    }else {
+        const newQty = cart[existingProductIndex].quantity + quantity;
+
+        if(newQty > 0) {
+            cart[existingProductIndex].quantity = newQty;
+        }else {
+            cart.splice(existingProductIndex , 1)
+        }
+    }
+
+    const cartString = JSON.stringify(cart);
+    localStorage.setItem("cart" , cartString)
+}
+
+export function getCartTotal(cart) {
+    let total = 0;
+    console.log(cart)
+
+    for(let i=0; i<cart.length; i++) {
+        total = total + cart[i].product.price * cart[i].quantity;
+    }
+
+    return total
+}
