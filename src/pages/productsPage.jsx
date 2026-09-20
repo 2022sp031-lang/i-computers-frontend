@@ -14,11 +14,7 @@ export default function ProductsPage() {
             if (!isProductsAreLoaded) {
                 const token = localStorage.getItem("token");
 
-                axios.get(import.meta.env.VITE_API_URL + "/products", {
-                    headers: {
-                        "Authorization": "Bearer " + token
-                    }
-                }).then(
+                axios.get(import.meta.env.VITE_API_URL + "/products").then(
                     (response) => {
                         setProducts(response.data)
                         setIsProdutsAreLoaded(true)
